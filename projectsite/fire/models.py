@@ -21,7 +21,7 @@ class Locations(BaseModel):
     
     
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.city}"
 
 
 class Incident(BaseModel):
