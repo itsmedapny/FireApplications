@@ -56,19 +56,27 @@ class FireStation(BaseModel):
 
 
 class Firefighters(BaseModel):
-    XP_CHOICES = (
-        ('Probationary Firefighter', 'Probationary Firefighter'),
+    XP_RANK = (
+        ('Veteran', 'Probationary Firefighter'),
         ('Firefighter I', 'Firefighter I'),
         ('Firefighter II', 'Firefighter II'),
         ('Firefighter III', 'Firefighter III'),
         ('Driver', 'Driver'),
         ('Captain', 'Captain'),
         ('Battalion Chief', 'Battalion Chief'),)
+    XP_CHOICES = (
+        ('Entry-Level Firefighters', 'Entry-Level Firefighters'),
+        ('Junior Firefighters', 'Junior Firefighters'),
+        ('Senior Firefighters', 'Senior Firefighters'),
+        ('Company Officers', 'Company Officers'),
+        ('Chief Officers', 'Chief Officers'),)
+    
     name = models.CharField(max_length=150)
-    rank = models.CharField(max_length=150)
-    experience_level = models.CharField(max_length=150)
-    station = models.CharField(
+    rank = models.CharField(
+        max_length=45, null=True, blank=True, choices=XP_RANK)
+    experience_level = models.CharField(
         max_length=45, null=True, blank=True, choices=XP_CHOICES)
+    station = models.CharField(max_length=45, null=True, blank=True)
     
     
     def __str__(self):
@@ -78,7 +86,7 @@ class Firefighters(BaseModel):
 class FireTruck(BaseModel):
     truck_number = models.CharField(max_length=150)
     model = models.CharField(max_length=150)
-    capacity = models.CharField(max_length=150)  # water
+    capacity = models.CharField(max_length=150)  
     station = models.ForeignKey(FireStation, on_delete=models.CASCADE)
     
     
