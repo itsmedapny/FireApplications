@@ -16,8 +16,8 @@ class Locations(BaseModel):
     longitude = models.DecimalField(
         max_digits=22, decimal_places=16, null=True, blank=True)
     address = models.CharField(max_length=150)
-    city = models.CharField(max_length=150)  # can be in separate table
-    country = models.CharField(max_length=150)  # can be in separate table
+    city = models.CharField(max_length=150)  
+    country = models.CharField(max_length=150)  
     
     
     def __str__(self):
@@ -47,8 +47,8 @@ class FireStation(BaseModel):
     longitude = models.DecimalField(
         max_digits=22, decimal_places=16, null=True, blank=True)
     address = models.CharField(max_length=150)
-    city = models.CharField(max_length=150)  # can be in separate table
-    country = models.CharField(max_length=150)  # can be in separate table
+    city = models.CharField(max_length=150)  
+    country = models.CharField(max_length=150)  
     
     
     def __str__(self):
