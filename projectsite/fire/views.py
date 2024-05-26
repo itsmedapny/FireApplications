@@ -9,7 +9,7 @@ from django.db.models import Count
 from datetime import datetime
 from collections import defaultdict
 from django.urls import reverse_lazy
-from fire.forms import FirestationForm, FiretruckForm, FirefightersForm, IncidentForm, LocationsForm
+from fire.forms import FirestationForm, FiretruckForm, FirefightersForm, IncidentForm, LocationsForm, WeatherConditionsForm
 
 
 
@@ -351,3 +351,26 @@ class LocationsDelete(DeleteView):
     model = Locations
     template_name = "locations_delete.html"
     success_url = reverse_lazy('locations-list')
+
+class WeathersList(ListView):
+    model = WeatherConditions
+    context_object_name = 'weather'
+    template_name = "weathers_list.html"
+    paginate_by = 5
+
+class WeathersAdd(CreateView):
+    model = WeatherConditions
+    form_class =    WeatherConditionsForm
+    template_name = "weathers_add.html"
+    success_url = reverse_lazy('weathers-list')
+
+class WeathersUpdate(UpdateView):
+    model = WeatherConditions
+    form_class = WeatherConditionsForm
+    template_name = "weathers_add.html"
+    success_url = reverse_lazy('weathers-list')
+
+class WeathersDelete(DeleteView):
+    model = WeatherConditions
+    template_name = "weathers_delete.html"
+    success_url = reverse_lazy('weathers-list')

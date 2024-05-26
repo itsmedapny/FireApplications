@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from fire.views import HomePageView, ChartView, PieCountbySeverity, LineCountbyMonth, MultilineIncidentTop3Country, multipleBarbySeverity, map_station, map_incidents, FireStationList, FireStationAdd, FireStationUpdate, FireStationDelete, FireTruckList, FireTruckAdd, FireTruckUpdate, FireTruckDelete, FireFightersList, FireFightersAdd, FireFightersUpdate, FireFightersDelete, IncidentsList, IncidentsAdd, IncidentsUpdate, IncidentsDelete, LocationsList, LocationsAdd, LocationsUpdate, LocationsDelete
+from fire.views import HomePageView, ChartView, PieCountbySeverity, LineCountbyMonth, MultilineIncidentTop3Country, multipleBarbySeverity, map_station, map_incidents, FireStationList, FireStationAdd, FireStationUpdate, FireStationDelete, FireTruckList, FireTruckAdd, FireTruckUpdate, FireTruckDelete, FireFightersList, FireFightersAdd, FireFightersUpdate, FireFightersDelete, IncidentsList, IncidentsAdd, IncidentsUpdate, IncidentsDelete, LocationsList, LocationsAdd, LocationsUpdate, LocationsDelete, WeathersList, WeathersAdd, WeathersUpdate, WeathersDelete
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -32,4 +32,8 @@ urlpatterns = [
     path('locationslist/add', LocationsAdd.as_view(), name='locations-add'),
     path('locationslist/edit/<int:pk>', LocationsUpdate.as_view(), name='locations-update'),
     path('locationslist/delete/<int:pk>', LocationsDelete.as_view(), name='locations-update'),
+    path('weatherslist', WeathersList.as_view(), name='weathers-list'),
+    path('weatherslist/add', WeathersAdd.as_view(), name='weathers-add'),
+    path('weatherslist/edit/<int:pk>', WeathersUpdate.as_view(), name='weathers-update'),
+    path('weatherslist/delete/<int:pk>', WeathersDelete.as_view(), name='weathers-delete'),
 ]
