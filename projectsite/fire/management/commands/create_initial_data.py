@@ -12,7 +12,7 @@ class Command(BaseCommand):
     def handle(self, *args: Any, **kwargs: Any) -> None:
         self.create_locations(10)
         self.create_incidents(20)
-        self.create_fire_stations(5)
+        self.create_fire_stations(20)
         self.create_firefighters(50)
         self.create_fire_trucks(20)
         self.create_weather_conditions(20)
