@@ -6,7 +6,7 @@
     <title>{% block title %}FireApp{% endblock %}</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="{% static 'img/icon.ico' %}" type="image/x-icon" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 
     <!-- Fonts and icons -->
@@ -162,7 +162,7 @@
                         <span class="sub-item">Fire Stations</span>
                       </a>
                       <a href="{% url 'map-incidents' %}">
-                        <i class="far fa-fire"></i>
+                        <i class="fa-solid fa-fire"></i>
                         <span class="sub-item">Fire Incidents</span>
                       </a>
                   </ul>
@@ -200,6 +200,10 @@
                       <a href="{% url 'firestation-list' %}">
                         <i class="far fa-building"></i>
                         <span class="sub-item">Fire Station</span>
+                      </a>
+                      <a href="{% url 'firetruck-list' %}">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <span class="sub-item">Fire Truck</span>
                       </a>
                   </ul>
                 </div>
