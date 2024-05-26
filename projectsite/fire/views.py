@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from fire.models import Locations, Incident, FireStation, FireTruck, Firefighters, Incident
+from fire.models import Locations, Incident, FireStation, FireTruck, Firefighters, Incident, WeatherConditions
 from django.db import connection
 from django.http import JsonResponse
 from django.db.models.functions import ExtractMonth
@@ -9,7 +9,7 @@ from django.db.models import Count
 from datetime import datetime
 from collections import defaultdict
 from django.urls import reverse_lazy
-from fire.forms import FirestationForm, FiretruckForm, FirefightersForm, IncidentForm
+from fire.forms import FirestationForm, FiretruckForm, FirefightersForm, IncidentForm, LocationsForm
 
 
 
@@ -328,3 +328,26 @@ class IncidentsDelete(DeleteView):
     model = Incident
     template_name = "incidents_delete.html"
     success_url = reverse_lazy('incidents-list')
+
+class LocationsList(ListView):
+    model = Locations
+    context_object_name = 'locations'
+    template_name = "locations_list.html"
+    paginate_by = 5
+
+class LocationsAdd(CreateView):
+    model = Locations
+    form_class =    LocationsForm
+    template_name = "locations_add.html"
+    success_url = reverse_lazy('locations-list')
+
+class LocationsUpdate(UpdateView):
+    model = Locations
+    form_class = LocationsForm
+    template_name = "locations_edit.html"
+    success_url = reverse_lazy('locations-list')
+
+class LocationsDelete(DeleteView):
+    model = Locations
+    template_name = "locations_delete.html"
+    success_url = reverse_lazy('locations-list')

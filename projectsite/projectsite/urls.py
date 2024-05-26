@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from fire.views import HomePageView, ChartView, PieCountbySeverity, LineCountbyMonth, MultilineIncidentTop3Country, multipleBarbySeverity, map_station, map_incidents, FireStationList, FireStationAdd, FireStationUpdate, FireStationDelete, FireTruckList, FireTruckAdd, FireTruckUpdate, FireTruckDelete, FireFightersList, FireFightersAdd, FireFightersUpdate, FireFightersDelete, IncidentsList, IncidentsAdd, IncidentsUpdate, IncidentsDelete
+from fire.views import HomePageView, ChartView, PieCountbySeverity, LineCountbyMonth, MultilineIncidentTop3Country, multipleBarbySeverity, map_station, map_incidents, FireStationList, FireStationAdd, FireStationUpdate, FireStationDelete, FireTruckList, FireTruckAdd, FireTruckUpdate, FireTruckDelete, FireFightersList, FireFightersAdd, FireFightersUpdate, FireFightersDelete, IncidentsList, IncidentsAdd, IncidentsUpdate, IncidentsDelete, LocationsList, LocationsAdd, LocationsUpdate, LocationsDelete
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -28,4 +28,8 @@ urlpatterns = [
     path('incidentslist/add', IncidentsAdd.as_view(), name='incidents-add'),
     path('incidentslist/edit/<int:pk>', IncidentsUpdate.as_view(), name='incidents-update'),
     path('incidentslist/delete/<int:pk>', IncidentsDelete.as_view(), name='incidents-delete'),
+    path('locationslist', LocationsList.as_view(), name='locations-list'),
+    path('locationslist/add', LocationsAdd.as_view(), name='locations-add'),
+    path('locationslist/edit/<int:pk>', LocationsUpdate.as_view(), name='locations-update'),
+    path('locationslist/delete/<int:pk>', LocationsDelete.as_view(), name='locations-update'),
 ]
