@@ -10,6 +10,10 @@ from datetime import datetime
 from collections import defaultdict
 from django.urls import reverse_lazy
 from fire.forms import FirestationForm, FiretruckForm, FirefightersForm, IncidentForm, LocationsForm, WeatherConditionsForm
+from typing import Any
+from django.db.models.query import QuerySet
+from django.db.models import Q
+from django.utils.dateparse import parse_date
 
 
 
@@ -238,6 +242,15 @@ class FireStationList(ListView):
     context_object_name = 'firestation'
     template_name = "firestation_list.html"
     paginate_by = 5
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(FireStationList, self).get_queryset(*args, **kwargs)
+        if self.request.GET.get("q") is not None:
+            query = self.request.GET.get("q")
+            qs = qs.filter(Q(name__icontains=query) | 
+                           Q(latitude__icontains=query) | Q(longitude__icontains=query) | Q(address__icontains=query) | Q(city__icontains=query) | 
+                           Q(country__icontains=query) )
+        return qs
     
 
 class FireStationAdd(CreateView):
@@ -266,6 +279,14 @@ class FireTruckList(ListView):
     template_name = "firetruck_list.html"
     paginate_by = 5
 
+    def get_queryset(self, *args, **kwargs):
+        qs = super(FireTruckList, self).get_queryset(*args, **kwargs)
+        if self.request.GET.get("q") is not None:
+            query = self.request.GET.get("q")
+            qs = qs.filter(Q(truck_number__icontains=query) | 
+                           Q(model__icontains=query) | Q(capacity__icontains=query) | Q(station__station__icontains=query) )
+        return qs
+
 class FireTruckAdd(CreateView):
     model = FireTruck
     form_class = FiretruckForm
@@ -288,6 +309,14 @@ class FireFightersList(ListView):
     context_object_name = 'firefighters'
     template_name = "firefighters_list.html"
     paginate_by = 5
+
+    def get_queryset(self, *args, **kwargs):
+            qs = super(FireFightersList, self).get_queryset(*args, **kwargs)
+            if self.request.GET.get("q") is not None:
+                query = self.request.GET.get("q")
+                qs = qs.filter(Q(name__icontains=query) | 
+                            Q(rank__icontains=query) | Q(experience_level__icontains=query) | Q(station__icontains=query))
+            return qs
 
 class FireFightersAdd(CreateView):
     model = Firefighters
@@ -312,6 +341,14 @@ class IncidentsList(ListView):
     template_name = "incidents_list.html"
     paginate_by = 5
 
+    def get_queryset(self, *args, **kwargs):
+            qs = super(IncidentsList, self).get_queryset(*args, **kwargs)
+            if self.request.GET.get("q") is not None:
+                query = self.request.GET.get("q")
+                qs = qs.filter(Q(location__city__icontains=query) | 
+                            Q(date_time__icontains=query) | Q(severity_level__icontains=query) | Q(description__icontains=query))
+            return qs
+
 class IncidentsAdd(CreateView):
     model = Incident
     form_class = IncidentForm
@@ -335,6 +372,14 @@ class LocationsList(ListView):
     template_name = "locations_list.html"
     paginate_by = 5
 
+    def get_queryset(self, *args, **kwargs):
+            qs = super(LocationsList, self).get_queryset(*args, **kwargs)
+            if self.request.GET.get("q") is not None:
+                query = self.request.GET.get("q")
+                qs = qs.filter(Q(name__icontains=query) | 
+                            Q(latitude__icontains=query) | Q(longitude__icontains=query) | Q(address__icontains=query) | Q(city__icontains=query) | Q(country__icontains=query) )
+            return qs
+
 class LocationsAdd(CreateView):
     model = Locations
     form_class =    LocationsForm
@@ -357,6 +402,14 @@ class WeathersList(ListView):
     context_object_name = 'weather'
     template_name = "weathers_list.html"
     paginate_by = 5
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(WeathersList, self).get_queryset(*args, **kwargs)
+        if self.request.GET.get("q") is not None:
+            query = self.request.GET.get("q")
+            qs = qs.filter(Q(incident__city__icontains=query) | 
+                           Q(temperature__icontains=query) | Q(humidity__icontains=query) | Q(wind_speed__icontains=query) | Q(weather_description__icontains=query)  )
+        return qs
 
 class WeathersAdd(CreateView):
     model = WeatherConditions
