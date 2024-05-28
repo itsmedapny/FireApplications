@@ -6,7 +6,8 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">
-          <div class="card-title">Line Chart</div>
+          <div class="card-title" style="text-align: center;">Number of Active Users</div>
+          <p style="text-align: center; font-size: 12px; margin-bottom: 10px;">Count number of active users of fire app per month</p> 
         </div>
         <div class="card-body">
           <div class="chart-container">
@@ -18,7 +19,8 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">
-          <div class="card-title">Bar Chart</div>
+          <div class="card-title" style="text-align: center;">Distribution of Fire Stations</div>
+          <p style="text-align: center; font-size: 12px; margin-bottom: 10px;">Count number of active users of fire app per month</p> 
         </div>
         <div class="card-body">
           <div class="chart-container">
@@ -30,7 +32,8 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">
-          <div class="card-title">Pie Chart</div>
+          <div class="card-title" style="text-align: center;">Highest Fire Incidents</div>
+          <p style="text-align: center; font-size: 12px; margin-bottom: 10px;">Distribution of fire incidents categorized as minor, moderate, and major</p> 
         </div>
         <div class="card-body">
           <div class="chart-container">
@@ -42,19 +45,8 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">
-          <div class="card-title">Doughnut Chart</div>
-        </div>
-        <div class="card-body">
-          <div class="chart-container">
-            <canvas id="doughnutChart" style="width: 50%; height: 50%"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">Radar Chart</div>
+          <div class="card-title" style="text-align: center;">Experience Level of Firefighters</div>
+          <p style="text-align: center; font-size: 12px; margin-bottom: 10px;">Difference experience level of the firefighter</p> 
         </div>
         <div class="card-body">
           <div class="chart-container">
@@ -66,19 +58,8 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">
-          <div class="card-title">Bubble Chart</div>
-        </div>
-        <div class="card-body">
-          <div class="chart-container">
-            <canvas id="bubbleChart"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">Multiple Line Chart</div>
+          <div class="card-title" style="text-align: center;">Fire Incidents Counts Per Country</div>
+          <p style="text-align: center; font-size: 12px; margin-bottom: 10px;">Number of fire incidents per month</p> 
         </div>
         <div class="card-body">
           <div class="chart-container">
@@ -90,7 +71,8 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">
-          <div class="card-title">Multiple Bar Chart</div>
+          <div class="card-title" style="text-align: center;">Severity Level of Fire Incidents</div>
+          <p style="text-align: center; font-size: 12px; margin-bottom: 10px;">Distribution of severity level of fire incidents</p> 
         </div>
         <div class="card-body">
           <div class="chart-container">
@@ -432,9 +414,8 @@
   // var lineChart = document.getElementById("lineChart").getContext("2d"),
   var barChart = document.getElementById("barChart").getContext("2d"),
     //pieChart = document.getElementById("pieChart").getContext("2d"),
-    doughnutChart = document.getElementById("doughnutChart").getContext("2d"),
     radarChart = document.getElementById("radarChart").getContext("2d"),
-    bubbleChart = document.getElementById("bubbleChart").getContext("2d"),
+    //bubbleChart = document.getElementById("bubbleChart").getContext("2d"),
     // multipleLineChart = document.getElementById("multipleLineChart").getContext("2d"),
     // multipleBarChart = document.getElementById("multipleBarChart").getContext("2d"),
     htmlLegendsChart = document.getElementById("htmlLegendsChart").getContext("2d");
@@ -488,14 +469,17 @@
   var myBarChart = new Chart(barChart, {
     type: "bar",
     data: {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      labels: ["Philippines", "Indonesia", "Ethiopia", "Kuwait", "Argentina", "Belarus"],
       datasets: [
-        {
-          label: "Sales",
-          backgroundColor: "rgb(23, 125, 255)",
-          borderColor: "rgb(23, 125, 255)",
-          data: [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4],
-        },
+      {
+      label: "Country",
+      backgroundColor: ["#59d05d", "#fdaf4b", "#177dff", "#59d05d", "#fdaf4b", "#177dff"], 
+      borderColor: ["#59d05d", "#fdaf4b", "#177dff", "#59d05d", "#fdaf4b", "#177dff"], 
+      data: [4, 1, 1, 1, 1, 1],
+    },
+
+
+
       ],
     },
     options: {
@@ -554,58 +538,22 @@
   //   },
   // });
 
-  var myDoughnutChart = new Chart(doughnutChart, {
-    type: "doughnut",
-    data: {
-      datasets: [
-        {
-          data: [10, 20, 30],
-          backgroundColor: ["#f3545d", "#fdaf4b", "#1d7af3"],
-        },
-      ],
-
-      labels: ["Red", "Yellow", "Blue"],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      legend: {
-        position: "bottom",
-      },
-      layout: {
-        padding: {
-          left: 20,
-          right: 20,
-          top: 20,
-          bottom: 20,
-        },
-      },
-    },
-  });
 
   var myRadarChart = new Chart(radarChart, {
     type: "radar",
     data: {
-      labels: ["Running", "Swimming", "Eating", "Cycling", "Jumping"],
+      labels: ["Entry-Level Firefighter", "Junior Firefighter", "Senior Firefighter", "Company Officers", "Chief Officers", "Battalion Officers"],
       datasets: [
         {
-          data: [20, 10, 30, 2, 30],
-          borderColor: "#1d7af3",
-          backgroundColor: "rgba(29, 122, 243, 0.25)",
+          data: [5, 0, 4, 3, 3, 3],
+          borderColor: "#177dff",
+          backgroundColor: "#fdaf4b",
           pointBackgroundColor: "#1d7af3",
           pointHoverRadius: 4,
           pointRadius: 3,
-          label: "Team 1",
+          label: "Firefighters", 
         },
-        {
-          data: [10, 20, 15, 30, 22],
-          borderColor: "#716aca",
-          backgroundColor: "rgba(113, 106, 202, 0.25)",
-          pointBackgroundColor: "#716aca",
-          pointHoverRadius: 4,
-          pointRadius: 3,
-          label: "Team 2",
-        },
+        
       ],
     },
     options: {
@@ -617,54 +565,54 @@
     },
   });
 
-  var myBubbleChart = new Chart(bubbleChart, {
-    type: "bubble",
-    data: {
-      datasets: [
-        {
-          label: "Car",
-          data: [
-            { x: 25, y: 17, r: 25 },
-            { x: 30, y: 25, r: 28 },
-            { x: 35, y: 30, r: 8 },
-          ],
-          backgroundColor: "#716aca",
-        },
-        {
-          label: "Motorcycles",
-          data: [
-            { x: 10, y: 17, r: 20 },
-            { x: 30, y: 10, r: 7 },
-            { x: 35, y: 20, r: 10 },
-          ],
-          backgroundColor: "#1d7af3",
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      legend: {
-        position: "bottom",
-      },
-      scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true,
-            },
-          },
-        ],
-        xAxes: [
-          {
-            ticks: {
-              beginAtZero: true,
-            },
-          },
-        ],
-      },
-    },
-  });
+  // var myBubbleChart = new Chart(bubbleChart, {
+  //   type: "bubble",
+  //   data: {
+  //     datasets: [
+  //       {
+  //         label: "Car",
+  //         data: [
+  //           { x: 25, y: 17, r: 25 },
+  //           { x: 30, y: 25, r: 28 },
+  //           { x: 35, y: 30, r: 8 },
+  //         ],
+  //         backgroundColor: "#716aca",
+  //       },
+  //       {
+  //         label: "Motorcycles",
+  //         data: [
+  //           { x: 10, y: 17, r: 20 },
+  //           { x: 30, y: 10, r: 7 },
+  //           { x: 35, y: 20, r: 10 },
+  //         ],
+  //         backgroundColor: "#1d7af3",
+  //       },
+  //     ],
+  //   },
+  //   options: {
+  //     responsive: true,
+  //     maintainAspectRatio: false,
+  //     legend: {
+  //       position: "bottom",
+  //     },
+  //     scales: {
+  //       yAxes: [
+  //         {
+  //           ticks: {
+  //             beginAtZero: true,
+  //           },
+  //         },
+  //       ],
+  //       xAxes: [
+  //         {
+  //           ticks: {
+  //             beginAtZero: true,
+  //           },
+  //         },
+  //       ],
+  //     },
+  //   },
+  // });
 
   // var myMultipleLineChart = new Chart(multipleLineChart, {
   //   type: "line",
