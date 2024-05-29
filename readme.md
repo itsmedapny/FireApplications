@@ -8,7 +8,7 @@ A simple app that monitors fire incidents from different cities and countries.
 
 ####  Dashboard Chart
 
-![alt text](dashboard_read.jpg)
+<img src="https://github.com/itsmedapny/FireApplications/blob/1689254d9743f9f88b30a5d4935e94cea3798b22/projectsite/static/img/dashboard_read.jpg?raw=true" alt="Your Image Description">
 
 It consists of 4 different charts, the following are:
 
@@ -24,13 +24,13 @@ It consists of 4 different charts, the following are:
 
 ####  Mapping Fire Stations
 
-![alt text](fire_stationsmap_read.jpg)
+<img src="https://github.com/itsmedapny/FireApplications/blob/1689254d9743f9f88b30a5d4935e94cea3798b22/projectsite/static/img/fire_stationsmap_read.jpg?raw=true" alt="Your Image Description">
 
 This displays fire stations in various locations, each represented by an icon of a fire truck. Each icon indicates the presence of a fire station in the corresponding area.
 
 ####  Mapping Map Incidents
 
-![alt text](fireincidents.jpg)
+<img src="https://raw.githubusercontent.com/itsmedapny/FireApplications/08e1ba123052d815659a7eb448d6239fbe9614b8/projectsite/static/img/fireincidentst_map.jpg" alt="Your Image Description">
 
 This displays map incidents in various cities of the world, each represented by an icon of a fire. Each icon indicates the date of incidents and description. It also has a search bar where it shows all the cities that has fire incidents. 
 
@@ -38,31 +38,31 @@ This displays map incidents in various cities of the world, each represented by 
 
 ####  Fire App ( Fire Stations, Fire Trucks, Firefighters, Incidents, Locations, and Weather Conditions )
 
-![alt text](dashboard_fireApp.jpg)
+<img src="https://github.com/itsmedapny/FireApplications/blob/1689254d9743f9f88b30a5d4935e94cea3798b22/projectsite/static/img/dashboard_fireApp.jpg?raw=true" alt="Your Image Description">
 
 ####  Fire Station Create Read Update Delete
 
-![alt text](firestations.jpg)
+<img src="https://github.com/itsmedapny/FireApplications/blob/1689254d9743f9f88b30a5d4935e94cea3798b22/projectsite/static/img/firestations.jpg?raw=true" alt="Your Image Description">
 
 ####  Fire Trucks Create Read Update Delete
 
-![alt text](firetrucks.jpg)
+<img src="https://github.com/itsmedapny/FireApplications/blob/1689254d9743f9f88b30a5d4935e94cea3798b22/projectsite/static/img/firetrucks.jpg?raw=true" alt="Your Image Description">
 
 ####  Firefighters Create Read Update Delete
 
-![alt text](firefighters.jpg)
+<img src="https://github.com/itsmedapny/FireApplications/blob/1689254d9743f9f88b30a5d4935e94cea3798b22/projectsite/static/img/firefighters.jpg?raw=true" alt="Your Image Description">
 
 ####  Incidents Create Read Update Delete
 
-![alt text](incidents.jpg)
+<img src="https://github.com/itsmedapny/FireApplications/blob/1689254d9743f9f88b30a5d4935e94cea3798b22/projectsite/static/img/fireincidents.jpg?raw=true" alt="Your Image Description">
 
 ####  Locations Create Read Update Delete
 
-![alt text](locations.jpg)
+<img src="https://github.com/itsmedapny/FireApplications/blob/1689254d9743f9f88b30a5d4935e94cea3798b22/projectsite/static/img/locations.jpg?raw=true" alt="Your Image Description">
 
 ####  Weather Conditions Create Read Update Delete
 
-![alt text](weatherconditions.jpg)
+<img src="https://github.com/itsmedapny/FireApplications/blob/1689254d9743f9f88b30a5d4935e94cea3798b22/projectsite/static/img/weatherconditions.jpg?raw=true" alt="Your Image Description">
 
 ## Author of the Project
 
