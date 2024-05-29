@@ -1,51 +1,78 @@
-# FireApp
+# Fire Applications in Django
 
 A simple app that monitors fire incidents from different cities and countries.
 
-### Instructions
+## Simple Description of the Project
 
-1. Create a Repository on GitHub:
+### Django First: Different Charts of Fire App (04 - 20 - 24)
 
-- Log in to your GitHub account.
-- Click on the "+" icon in the top-right corner of the page and select "New repository."
-- Enter a name for your repository, choose any other settings you want, and click "Create repository."
+####  Dashboard Chart
 
-2. Clone the Repository Locally:
+![alt text](dashboard_read.jpg)
 
-- Once the repository is created, you'll see a green "Code" button. Click on it.
-- Copy the URL provided (it should end with .git).
-- Open your terminal or command prompt on your local machine.
-- Navigate to the directory where you want to clone the repository.
-- Run the following command, replacing <repository_URL> with the URL you copied:
+It consists of 4 different charts, the following are:
 
-```
-git clone <repository_URL>
-```
+1. Number of Active Users
 
-3. Clone the Content of the Boilerplate:
+2. Highest Fire Incidents (Major, Moderate, Minor)
 
-- Navigate into the cloned repository directory:
+3. Fire Incidents Counts Per Country
 
-```
-cd <repository_name>
-```
+4. Severity Level of Fire Incidents
 
-- Now, clone the content of the boilerplate into this directory. If you have the URL for the boilerplate repository, you can use the following command:
+### Django Second: It consists of Fire Stations and Map Incidents (04 - 20 - 24)
 
-```
-git clone <boilerplate_repository_URL>
-```
+####  Mapping Fire Stations
 
-- Replace <boilerplate_repository_URL> with the URL of the boilerplate repository.
+![alt text](fire_stationsmap_read.jpg)
 
-If you don't have the URL for the boilerplate repository, you can download the content as a ZIP file from the boilerplate repository on GitHub. Once downloaded, extract the contents into your local repository directory.
+This displays fire stations in various locations, each represented by an icon of a fire truck. Each icon indicates the presence of a fire station in the corresponding area.
 
-4. Install Required Dependencies:
+####  Mapping Map Incidents
 
-- Ensure you have Python and pip installed on your machine.
-- Open a terminal or command prompt in the root directory of your local repository.
-- Run the following command to install the required dependencies:
+![alt text](fireincidents.jpg)
 
-```
-pip install -r requirements.txt
-```
+This displays map incidents in various cities of the world, each represented by an icon of a fire. Each icon indicates the date of incidents and description. It also has a search bar where it shows all the cities that has fire incidents. 
+
+### Django Third: In the fire App components. It shows all the models of the Fire App Project (04 - 20 - 24)
+
+####  Fire App ( Fire Stations, Fire Trucks, Firefighters, Incidents, Locations, and Weather Conditions )
+
+![alt text](dashboard_fireApp.jpg)
+
+####  Fire Station Create Read Update Delete
+
+![alt text](firestations.jpg)
+
+####  Fire Trucks Create Read Update Delete
+
+![alt text](firetrucks.jpg)
+
+####  Firefighters Create Read Update Delete
+
+![alt text](firefighters.jpg)
+
+####  Incidents Create Read Update Delete
+
+![alt text](incidents.jpg)
+
+####  Locations Create Read Update Delete
+
+![alt text](locations.jpg)
+
+####  Weather Conditions Create Read Update Delete
+
+![alt text](weatherconditions.jpg)
+
+## Author of the Project
+
+<img src="https://github.com/itsmedapny.png" alt="Your Image Description" style="width: 150px; border-radius: 50%;">
+
+**Name:** Ma. Daphnee B. Evediente <br>
+**Email:** 202180090@psu.palawan.edu.ph
+
+
+
+
+
+
