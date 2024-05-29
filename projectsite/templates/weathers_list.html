@@ -12,27 +12,26 @@
                         <div class="card-title">List of Weather Conditions</div>
                         <div class="card-category">Different Weathers in Various Fire Incidents</div>
                     </div>
-                    <br>
-                    <div class="col-md-12 row">
-                        <div class="col-md-6">
-                            <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'weathers-list' %}">
-                                <div class="input-group">
-                                    <input type="text" placeholder="Search ..." class="form-control" name="q">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="la la-search search-icon"></i>
-                                        </span>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'weathers-list' %}">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Search ..." class="form-control" name="q">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="la la-search search-icon"></i>
+                                            </span>
+                                        </div>
                                     </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="pull-right">
+                                    <a href="{% url 'weathers-add' %}" class="btn btn-success btn-rounded">Add Weather</a>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="pull-right">
-                                <a href="{% url 'weathers-add'%}" class="btn btn-success btn-rounded">Add Weather</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body">
                         <table class="table table-striped mt-3">
                             <thead>
                                 <tr>
@@ -54,12 +53,13 @@
                                     <td>{{ object.weather_description }}</td>
                                     <td>
                                         <a href="weatherslist/edit/{{ object.id }}">Edit</a>
+                                        <span class="text-danger"> | </span>
                                         <a href="weatherslist/delete/{{ object.id }}" class="text-danger">Delete</a>
                                     </td>
                                 </tr>
                                 {% empty %}
                                 <tr>
-                                    <td colspan="5" style="text-align: center">
+                                    <td colspan="6" class="text-center">
                                         <p class="text-sm font-weight-bold mb-0">No Records Found</p>
                                     </td>
                                 </tr>

@@ -4,6 +4,7 @@
 {% block content %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
+
 <div class="page-inner">
   <div class="page-header">
     <h4 class="page-title">Dashboard</h4>
@@ -38,15 +39,30 @@
           <div class="col-md-10 ml-auto mr-auto">
             <!-- Search form -->
             <form method="get" action="{% url 'map-incidents' %}">
-              <div class="form-group">
-                <label for="city">City:</label>
-                <input type="text" id="city" name="city" class="form-control" value="{{ city|default:'' }}">
+              <div class="form-row align-items-end">
+                <div class="form-group col-md-10" style="margin-bottom: 0;">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fas fa-search"></i></div>
+                    </div>
+                    <select id="city" name="city" class="form-control" style="height: calc(2.25rem + 2px);">
+                      <option value="">Select a city</option>
+                      {% for city, count in cities %}
+                        <option value="{{ city }}" {% if city == selected_city %}selected{% endif %}>{{ city }} ({{ count }} incidents)</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group col-md-2" style="margin-bottom: 0;">
+                  <button type="submit" class="btn btn-primary btn-block btn-search" style="height: calc(2.25rem + 2px); display: flex; align-items: center; justify-content: center;">
+                    Search
+                  </button>
+                </div>
               </div>
-              <button type="submit" class="btn btn-primary mb-3">Search</button>
             </form>
 
             <!-- Map container -->
-            <div id="map" style="width: 100%; height: 600px"></div>
+            <div id="map" style="width: 100%; height: 400px;"></div> <!-- Adjusted the height here -->
           </div>
         </div>
       </div>
@@ -57,7 +73,7 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    var map = L.map('map').setView([0, 0], 2);
+    var map = L.map('map').setView([20, 0], 2);  // Default view of the map
 
     var truckIcon = L.icon({
       iconUrl: '{% static "img/bonfire.png" %}', // Replace with the correct path to your bonfire icon
@@ -68,46 +84,15 @@
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    var locations = {{ locations|safe }};
+    var incidents = {{ incidents|safe }};
     
-    if (locations.length === 0) {
-      locations = [
-        // Default locations if no search has been performed
-        {
-          name: "Default Location 1",
-          latitude: 14.5995,
-          longitude: 120.9842,
-          incidents: [
-            {
-              date_time: "2024-01-01",
-              description: "Default incident description 1"
-            }
-          ]
-        },
-        {
-          name: "Default Location 2",
-          latitude: 13.0827,
-          longitude: 80.2707,
-          incidents: [
-            {
-              date_time: "2024-01-02",
-              description: "Default incident description 2"
-            }
-          ]
-        }
-      ];
-    }
-
-    locations.forEach(function(location) {
-      var marker = L.marker([location.latitude, location.longitude], {icon: truckIcon}).addTo(map);
-      var incidents = location.incidents.map(function(incident) {
-        return '<li>' + incident.date_time + ': ' + incident.description + '</li>';
-      }).join('');
-      marker.bindPopup('<h2>' + location.name + '</h2><ul>' + incidents + '</ul>');
+    incidents.forEach(function(incident) {
+      var marker = L.marker([incident.latitude, incident.longitude], {icon: truckIcon}).addTo(map);
+      marker.bindPopup('<h2>' + incident.location_name + '</h2><p>' + incident.date_time + ': ' + incident.description + '</p>');
     });
 
-    if (locations.length > 0) {
-      map.setView([locations[0].latitude, locations[0].longitude], 10);
+    if (incidents.length > 0) {
+      map.setView([incidents[0].latitude, incidents[0].longitude], 10);
     }
   });
 </script>

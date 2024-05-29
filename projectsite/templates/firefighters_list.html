@@ -1,4 +1,7 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
 <div class="content">
     <div class="container-fluid">
         <h4 class="page-title">Fire App</h4>
@@ -9,16 +12,16 @@
                         <div class="card-title">List of Firefighters</div>
                         <div class="card-category">Different Firefighters in Fire Incidents</div>
                     </div>
-                    <br>
-                        <div class="col-md-12 row">
+                    <div class="card-body">
+                        <div class="row mb-3">
                             <div class="col-md-6">
                                 <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'firefighters-list' %}">
                                     <div class="input-group">
                                         <input type="text" placeholder="Search ..." class="form-control" name="q">
                                         <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="la la-search search-icon"></i>
-                                        </span>
+                                            <span class="input-group-text">
+                                                <i class="la la-search search-icon"></i>
+                                            </span>
                                         </div>
                                     </div>
                                 </form>
@@ -29,7 +32,6 @@
                                 </div>
                             </div>
                         </div>
-                    <div class="card-body">
                         <table class="table table-striped mt-3">
                             <thead>
                                 <tr>
@@ -43,10 +45,10 @@
                             <tbody>
                                 {% for object in object_list %}
                                 <tr>
-                                    <td>{{ object.name}}</td>
-                                    <td>{{ object.rank}}</td>
-                                    <td>{{ object.experience_level}}</td>
-                                    <td>{{ object.station}}</td>
+                                    <td>{{ object.name }}</td>
+                                    <td>{{ object.rank }}</td>
+                                    <td>{{ object.experience_level }}</td>
+                                    <td>{{ object.station }}</td>
                                     <td>
                                         <a href="firefighters/edit/{{ object.id }}">Edit</a>
                                         <a href="firefighters/delete/{{ object.id }}" class="text-danger">Delete</a>
@@ -54,8 +56,8 @@
                                 </tr>
                                 {% empty %}
                                 <tr>
-                                    <td colspan="4" style="text-align: center">
-                                    <p class="text-sm font-weight-bold mb-0">No Records Found</p>
+                                    <td colspan="5" class="text-center">
+                                        <p class="text-sm font-weight-bold mb-0">No Records Found</p>
                                     </td>
                                 </tr>
                                 {% endfor %}

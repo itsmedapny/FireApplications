@@ -14,6 +14,7 @@ from typing import Any
 from django.db.models.query import QuerySet
 from django.db.models import Q
 from django.utils.dateparse import parse_date
+import random
 
 
 
@@ -134,16 +135,16 @@ def MultilineIncidentTop3Country(request):
         month = row[1]
         total_incidents = row[2]
 
-        # If the country is not in the result dictionary, initialize it with all months set to zero
+       
         if country not in result:
             result[country] = {month: 0 for month in months}
 
-        # Update the incident count for the corresponding month
+        
         result[country][month] = total_incidents
 
-    # Ensure there are always 3 countries in the result
+   
     while len(result) < 3:
-        # Placeholder name for missing countries
+        
         missing_country = f"Country {len(result) + 1}"
         result[missing_country] = {month: 0 for month in months}
 
@@ -172,7 +173,7 @@ def multipleBarbySeverity(request):
     months = set(str(i).zfill(2) for i in range(1, 13))
 
     for row in rows:
-        level = str(row[0])  # Ensure the severity level is a string
+        level = str(row[0])  
         month = row[1]
         total_incidents = row[2]
 
@@ -181,7 +182,7 @@ def multipleBarbySeverity(request):
 
         result[level][month] = total_incidents
 
-    # Sort months within each severity level
+    
     for level in result:
         result[level] = dict(sorted(result[level].items()))
 
@@ -204,42 +205,41 @@ def map_station(request):
  
 
 def map_incidents(request):
-    # Get the city parameter from the request
-    city = request.GET.get('city', None)
+    selected_city = request.GET.get('city', None)
 
-    # Filter incidents by city if the parameter is provided
-    if city:
-        incidents = Incident.objects.select_related('location').filter(location__city=city).values(
+    cities_with_counts = Incident.objects.values('location__city').annotate(count=Count('id')).order_by('location__city')
+    cities = [(item['location__city'], item['count']) for item in cities_with_counts]
+
+    incidents_list = []
+    offset = 0.050 
+
+    if selected_city:
+        incidents = Incident.objects.select_related('location').filter(location__city=selected_city).values(
             'location__name', 'location__latitude', 'location__longitude', 'description', 'date_time'
         )
-    else:
-        incidents = Incident.objects.select_related('location').values(
-            'location__name', 'location__latitude', 'location__longitude', 'description', 'date_time'
-        )
 
-    locations = defaultdict(lambda: {'incidents': []})
-    for incident in incidents:
-        location_name = incident['location__name']
-        location_data = {
-            'name': location_name,
-            'latitude': float(incident['location__latitude']),
-            'longitude': float(incident['location__longitude']),
-            'incidents': locations[location_name]['incidents']
-        }
-        location_data['incidents'].append({
-            'description': incident['description'],
-            'date_time': incident['date_time'].strftime('%Y-%m-%d')
-        })
-        locations[location_name] = location_data
-
-    locations_list = list(locations.values())
+        for incident in incidents:
+            latitude = float(incident['location__latitude']) + random.uniform(-offset, offset)
+            longitude = float(incident['location__longitude']) + random.uniform(-offset, offset)
+            incidents_list.append({
+                'location_name': incident['location__name'],
+                'latitude': latitude,
+                'longitude': longitude,
+                'description': incident['description'],
+                'date_time': incident['date_time'].strftime('%Y-%m-%d')
+            })
 
     context = {
-        'locations': locations_list,
-        'city': city  # Pass the city back to the template for displaying in the search form
+        'incidents': incidents_list,
+        'cities': cities,
+        'selected_city': selected_city  # Pass the selected city back to the template for displaying in the combo box
     }
 
     return render(request, 'map_incidents.html', context)
+
+
+
+
 
 class FireStationList(ListView):
     model = FireStation
