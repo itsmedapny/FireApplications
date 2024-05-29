@@ -4,7 +4,7 @@ from fire.views import HomePageView, ChartView, PieCountbySeverity, LineCountbyM
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', HomePageView.as_view(), name='home'),
+    path('', HomePageView.as_view(), name='dashboard-chart'),
     path('dashboard_chart', ChartView.as_view(), name='dashboard-chart'),
     path('chart/', PieCountbySeverity, name='chart'),
     path('multilineChart/', MultilineIncidentTop3Country, name='chart'),

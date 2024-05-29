@@ -18,13 +18,17 @@ from django.utils.dateparse import parse_date
 
 
 class HomePageView(ListView):
-    model = Locations
-    context_object_name = 'home'
     template_name = "home.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get_queryset(self, *args, **kwargs):
+        pass
 
 class ChartView(ListView):
-    template_name = 'chart.html'
+    template_name = "chart.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -283,8 +287,10 @@ class FireTruckList(ListView):
         qs = super(FireTruckList, self).get_queryset(*args, **kwargs)
         if self.request.GET.get("q") is not None:
             query = self.request.GET.get("q")
-            qs = qs.filter(Q(truck_number__icontains=query) | 
-                           Q(model__icontains=query) | Q(capacity__icontains=query) | Q(station__station__icontains=query) )
+            qs = qs.filter( #Q(station__station__icontains=query)
+                Q(truck_number__icontains=query) | 
+                Q(model__icontains=query) | Q(capacity__icontains=query) )
+            
         return qs
 
 class FireTruckAdd(CreateView):
@@ -377,7 +383,8 @@ class LocationsList(ListView):
             if self.request.GET.get("q") is not None:
                 query = self.request.GET.get("q")
                 qs = qs.filter(Q(name__icontains=query) | 
-                            Q(latitude__icontains=query) | Q(longitude__icontains=query) | Q(address__icontains=query) | Q(city__icontains=query) | Q(country__icontains=query) )
+                            Q(latitude__icontains=query) | Q(longitude__icontains=query) |
+                            Q(address__icontains=query) | Q(city__icontains=query) | Q(country__icontains=query) )
             return qs
 
 class LocationsAdd(CreateView):
@@ -407,8 +414,9 @@ class WeathersList(ListView):
         qs = super(WeathersList, self).get_queryset(*args, **kwargs)
         if self.request.GET.get("q") is not None:
             query = self.request.GET.get("q")
-            qs = qs.filter(Q(incident__city__icontains=query) | 
-                           Q(temperature__icontains=query) | Q(humidity__icontains=query) | Q(wind_speed__icontains=query) | Q(weather_description__icontains=query)  )
+            qs = qs.filter( Q(incident__location__name__icontains=query) |
+                Q(temperature__icontains=query) | Q(humidity__icontains=query) | 
+                Q(wind_speed__icontains=query) | Q(weather_description__icontains=query)  )
         return qs
 
 class WeathersAdd(CreateView):

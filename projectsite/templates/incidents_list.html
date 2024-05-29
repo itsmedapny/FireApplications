@@ -1,5 +1,7 @@
+{% extends 'base.html' %}
+{% load static %}
 
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% block content %}
 <div class="content">
     <div class="container-fluid">
         <h4 class="page-title">Fire App</h4>
@@ -11,25 +13,25 @@
                         <div class="card-category">Different Fire Incidents in Various Locations</div>
                     </div>
                     <br>
-                        <div class="col-md-12 row">
-                            <div class="col-md-6">
-                                <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'incidents-list' %}">
-                                    <div class="input-group">
-                                        <input type="text" placeholder="Search ..." class="form-control" name="q">
-                                        <div class="input-group-append">
+                    <div class="col-md-12 row">
+                        <div class="col-md-6">
+                            <form class="navbar-left navbar-form nav-search mr-md-3" action="{% url 'incidents-list' %}">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Search ..." class="form-control" name="q">
+                                    <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="la la-search search-icon"></i>
                                         </span>
-                                        </div>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="pull-right">
-                                    <a href="{% url 'incidents-add'%}" class="btn btn-success btn-rounded">Add Incident</a>
                                 </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="pull-right">
+                                <a href="{% url 'incidents-add'%}" class="btn btn-success btn-rounded">Add Incident</a>
                             </div>
                         </div>
+                    </div>
                     <div class="card-body">
                         <table class="table table-striped mt-3">
                             <thead>
@@ -38,15 +40,16 @@
                                     <th scope="col">Date Time</th>
                                     <th scope="col">Severity Level</th>
                                     <th scope="col">Description</th>
+                                    <th scope="col">Actions</th> 
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for object in object_list %}
                                 <tr>
-                                    <td>{{ object.location}}</td>
-                                    <td>{{ object.date_time}}</td>
-                                    <td>{{ object.severity_level}}</td>
-                                    <td>{{ object.description}}</td>
+                                    <td>{{ object.location }}</td>
+                                    <td>{{ object.date_time }}</td>
+                                    <td>{{ object.severity_level }}</td>
+                                    <td>{{ object.description }}</td>
                                     <td>
                                         <a href="incidentslist/edit/{{ object.id }}">Edit</a>
                                         <a href="incidentslist/delete/{{ object.id }}" class="text-danger">Delete</a>
@@ -55,7 +58,7 @@
                                 {% empty %}
                                 <tr>
                                     <td colspan="4" style="text-align: center">
-                                    <p class="text-sm font-weight-bold mb-0">No Records Found</p>
+                                        <p class="text-sm font-weight-bold mb-0">No Records Found</p>
                                     </td>
                                 </tr>
                                 {% endfor %}
