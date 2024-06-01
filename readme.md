@@ -64,12 +64,17 @@ This displays map incidents in various cities of the world, each represented by 
 
 <img src="https://github.com/itsmedapny/FireApplications/blob/1689254d9743f9f88b30a5d4935e94cea3798b22/projectsite/static/img/weatherconditions.jpg?raw=true" alt="Your Image Description">
 
-## Author of the Project
+## Authors of the Project
 
 <img src="https://github.com/itsmedapny.png" alt="Your Image Description" style="width: 150px; border-radius: 50%;">
 
 **Name:** Ma. Daphnee B. Evediente <br>
 **Email:** 202180090@psu.palawan.edu.ph
+
+<img src="https://github.com/Pauwiiiii.png" alt="Your Image Description" style="width: 150px; border-radius: 50%;">
+
+**Name:** John Paul Solis <br>
+**Email:** 202180209@psu.palawan.edu.ph
 
 
 
